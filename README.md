@@ -2,20 +2,20 @@
 
 # Contenido
 
-En esta implementación se uso sql server para la base de datos, jdk 17 y con la ayuda de maven 
+En esta implementación se usó sql server para la base de datos, jdk 17 y con la ayuda de maven 
 
 # Estructura de Repositorio
 
 | Directorio/Archivo | Contenido |
 | --- | --- |
-| compilados | compilados de la solución y despligue para docker. Tambien se encuenta el script sql solicitado BaseDatos.sql    |
+| compilados | compilados de la solución y despligue para docker. Tambien se encuentra el script sql solicitado BaseDatos.sql    |
 | postman | archivos json para probar los servicios con postman |
 | Reportes | reportes de las pruebas unitarias y karate de los microservicios  |
-| CodigoFuente.zip | código fuente de la solucion el cual esta protegido por una clave que se proporciono en  los comentarios de la prueba. |
+| CodigoFuente.zip | código fuente de la solución el cual esta protegido por una clave que se proporcionó en  los comentarios de la prueba. |
 
-# Ejecución de cumpilados
+# Ejecución de compilados
 
-## Prerequisitos de ejecución
+## Prerrequisitos de ejecución
 
 Para la ejecución se tiene que cumplir con los requisitos siguientes:
 
