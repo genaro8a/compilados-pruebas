@@ -1,0 +1,61 @@
+version: '3.8'
+
+services:
+  mssql:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    container_name: mssql
+    ports:
+      - "1433:1433"
+    environment:
+      SA_PASSWORD: "test.12345"
+      ACCEPT_EULA: "Y"
+    volumes:
+      - ./BaseDatos.sql:/docker-entrypoint-initdb.d/BaseDatos.sql
+    networks:
+      - backend
+
+  administracionclientes:
+    build:
+      context: ./administracion-clientes
+    container_name: administracionclientes
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_R2DBC_URL=r2dbc:mssql://mssql:1433/administracion_clientes
+      - SPRING_R2DBC_USERNAME=sa
+      - SPRING_R2DBC_PASSWORD=test.12345
+    depends_on:
+      - mssql
+    networks:
+      - backend
+
+  cuentamovimientos:
+    build:
+      context: ./cuenta-movimientos
+    container_name: cuentamovimientos
+    ports:
+      - "8081:8081"
+    environment:
+      - SPRING_R2DBC_URL=r2dbc:mssql://mssql:1433/administracion_clientes
+      - SPRING_R2DBC_USERNAME=sa
+      - SPRING_R2DBC_PASSWORD=test.12345
+      - CLIENTES_SERVICE_URL=http://administracionclientes:8080
+    depends_on:
+      - mssql
+      - administracionclientes
+    networks:
+      - backend
+
+  mssql-client:
+    image: mcr.microsoft.com/mssql-tools
+    depends_on:
+      - mssql
+    entrypoint: /bin/bash -c 'sleep 20s && /opt/mssql-tools/bin/sqlcmd -S mssql -U sa -P test.12345 -Q "CREATE DATABASE administracion_clientes" && /opt/mssql-tools/bin/sqlcmd -S mssql -U sa -P test.12345 -d administracion_clientes -i /scripts/BaseDatos.sql'
+    volumes:
+      - ./BaseDatos.sql:/scripts/BaseDatos.sql
+    networks:
+      - backend
+
+networks:
+  backend:
+    driver: bridge

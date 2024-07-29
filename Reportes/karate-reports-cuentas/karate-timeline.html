@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Karate Timeline</title>
+    <style>
+      body, html { font-family: arial, sans-serif; font-size: 11pt; }
+      #visualization { box-sizing: border-box; width: 100%; height: 300px; }
+      .vis-item.failed { background-color: #F2928C; }
+      .page-heading { padding: 0.5em; margin-bottom: 0.5em; background-color: lightcyan; border: 1px solid gray; }
+    </style>
+    <script src="res/vis.min.js"></script>
+    <link href="res/vis.min.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div class="page-heading">
+      <a href="karate-summary.html">Summary</a>
+    </div>     
+    <div id="visualization"></div>
+    <script>
+var groups = [{"content":"main","id":1}];
+var items = [{"id":1,"group":1,"content":"cuentas[1:6]","start":1722238351594,"end":1722238353283,"title":"cuentas[1:6] 02:32:31.594-02:32:33.283 Crear una cuenta"},{"id":2,"group":1,"content":"cuentas[2:12]","start":1722238353308,"end":1722238353425,"title":"cuentas[2:12] 02:32:33.308-02:32:33.425 Obtener cuenta por ID"},{"id":3,"group":1,"content":"cuentas[3:17]","start":1722238353435,"end":1722238353525,"title":"cuentas[3:17] 02:32:33.435-02:32:33.525 Obtener todas las cuentas"},{"id":4,"group":1,"content":"cuentas[4:22]","start":1722238353540,"end":1722238353631,"title":"cuentas[4:22] 02:32:33.540-02:32:33.631 Actualizar cuenta"},{"id":5,"group":1,"content":"cuentas[5:28]","start":1722238353643,"end":1722238353662,"title":"cuentas[5:28] 02:32:33.643-02:32:33.662 Eliminar cuenta"},{"id":6,"group":1,"content":"cuentas[6:33]","start":1722238353671,"end":1722238353722,"title":"cuentas[6:33] 02:32:33.671-02:32:33.722 Crear un movimiento"},{"id":7,"group":1,"content":"cuentas[7:39]","start":1722238353731,"end":1722238353750,"title":"cuentas[7:39] 02:32:33.731-02:32:33.750 Obtener movimiento por ID"},{"id":8,"group":1,"content":"cuentas[8:44]","start":1722238353758,"end":1722238353782,"title":"cuentas[8:44] 02:32:33.758-02:32:33.782 Obtener todos los movimientos"},{"id":9,"group":1,"content":"cuentas[9:49]","start":1722238353791,"end":1722238353807,"title":"cuentas[9:49] 02:32:33.791-02:32:33.807 Eliminar movimiento"},{"id":10,"group":1,"content":"cuentas[10:54]","start":1722238353814,"end":1722238353877,"title":"cuentas[10:54] 02:32:33.814-02:32:33.877 Estado de cuenta"},{"id":11,"group":1,"content":"cuentas[11:62]","start":1722238353885,"end":1722238353912,"title":"cuentas[11:62] 02:32:33.885-02:32:33.912 Actualizar movimiento"}];
+</script>
+    <script>
+      var container = document.getElementById('visualization');
+      var timeline = new vis.Timeline(container);
+      timeline.setOptions({groupOrder: 'content'});
+      timeline.setGroups(new vis.DataSet(groups));
+      timeline.setItems(new vis.DataSet(items));
+    </script>
+  </body>
+</html>
